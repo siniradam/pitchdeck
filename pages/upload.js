@@ -1,12 +1,13 @@
+import React from "react";
 import Head from "next/head";
-import Form from "../components/Form";
 import Header from "../components/Header";
+import Form from "../components/Form";
 
-export default function Home() {
+function upload() {
   return (
     <div>
       <Head>
-        <title>We Funder - Pitch Deck</title>
+        <title>Upload File - We Funder</title>
         <meta name='description' content='WeFunder' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -18,3 +19,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default upload;
