@@ -15,7 +15,9 @@ function Header() {
   return (
     <div className='flex items-center flex-shrink-0 w-full h-16 px-10 bg-white bg-opacity-75'>
       <Link href='/'>
-        <Image src='/images/logo.svg' width={117} height={32} />
+        <a>
+          <Image src='/images/logo.svg' width={117} height={32} />
+        </a>
       </Link>
       <div className='ml-10'>
         <Link href='/projects'>

@@ -1,13 +1,34 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
+import { FileUploader } from "react-drag-drop-files";
 
 function Form() {
   const [name, setName] = useState("");
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setprojectDescription] = useState("");
+  const [file, setFile] = useState(null);
+  const handleChange = (file) => {
+    setFile(file);
+  };
 
-  const saveProject = () => {
+  const fileTypes = ["PDF", "PPTX", "PPT"];
+
+  const saveProject = async (formData) => {
     console.log(name, projectName, projectDescription);
+
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+      onUploadProgress: (event) => {
+        console.log(
+          `Current progress:`,
+          Math.round((event.loaded * 100) / event.total)
+        );
+      },
+    };
+
+    const response = await axios.post("/api/uploads", formData, config);
+
+    console.log("response", response.data);
   };
 
   return (
@@ -42,7 +63,25 @@ function Form() {
             />
           </div>
           <div className='w-64 bg-gray-100 rounded-lg flex justify-center'>
-            <p className='self-center'>Drag your file here.</p>
+            {/*  */}
+            <FileUploader
+              handleChange={handleChange}
+              name='file'
+              types={fileTypes}
+              classes='flex w-full h-full justify-center'
+              maxSize={1}
+              minSize={1}
+              children={
+                file ? (
+                  file.name
+                ) : (
+                  <p className='self-center'>
+                    Drag your file here.
+                    <br /> ({fileTypes.join(", ")})
+                  </p>
+                )
+              }
+            />
           </div>
         </div>
 
