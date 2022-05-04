@@ -31,7 +31,7 @@ function Form() {
     };
 
     const fileName = `${new Date().getTime()}_${file.name}`
-      .replace(/[^a-z0-9]/gi, "_")
+      .replace(/[^a-z0-9\.]/gi, "_")
       .toLowerCase();
     const formData = new FormData();
     formData.append("username", name);

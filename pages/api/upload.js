@@ -3,6 +3,7 @@ import multer from "multer";
 
 import { projectFS } from "../../helpers/projectFs";
 import imageExtractor from "../../helpers/imageExtractor";
+import pdfConverter from "../../helpers/pdfConverter";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -23,17 +24,41 @@ const apiRoute = nextConnect({
 apiRoute.use(upload.single("file"));
 apiRoute.post((req, res) => {
   const form = req.body;
+
   const project = projectFS.create({ ...form, inProgress: true });
-  const extract = imageExtractor.extract(req.file.filename, project.id);
+  let extract;
 
-  console.log({ extract });
+  //is Power Point file?
+  if (req.file.filename.indexOf(".pptx") > -1) {
+    const result = pdfConverter.convert(req.file.filename);
+    console.log({ result });
+    result
+      .then((pdfBuffer) => {
+        extract = imageExtractor.extract(
+          `${req.file.filename}.pdf`,
+          project.id
+        );
 
-  res.status(200).json({
-    project: {
-      id: project.id,
-    },
-    status: 200,
-  });
+        res.status(200).json({
+          project: {
+            id: project.id,
+          },
+          status: 200,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    extract = imageExtractor.extract(req.file.filename, project.id);
+
+    res.status(200).json({
+      project: {
+        id: project.id,
+      },
+      status: 200,
+    });
+  }
 });
 
 export const config = {
