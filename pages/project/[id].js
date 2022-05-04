@@ -34,14 +34,12 @@ function project({ project }) {
                       soon.
                     </h2>
                   ) : (
-                    project?.images?.map((image) => (
-                      <Image
-                        src={image.path}
-                        key={image.id}
-                        layout='fill'
-                        objectFit='cover'
-                      />
-                    ))
+                    <Image
+                      key={`${project?.images[0].id}`}
+                      src={project?.images[0].path}
+                      layout='fill'
+                      objectFit='cover'
+                    />
                   )}
                 </div>
                 <div className='w-full p-8  border-gray-300'>
@@ -49,6 +47,21 @@ function project({ project }) {
                   <p className='text-sm whitespace-pre-line'>
                     {project.description}
                   </p>
+                  {project.inProgress ? (
+                    <h2 className='text-center self-center'>
+                      We are still working on this, images will be available
+                      soon.
+                    </h2>
+                  ) : (
+                    project?.images?.map((image) => (
+                      <Image
+                        key={`p${image.id}`}
+                        src={image.path}
+                        width={600}
+                        height={900}
+                      />
+                    ))
+                  )}
                 </div>
               </div>
             </div>
