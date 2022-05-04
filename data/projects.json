@@ -1,7 +1,8 @@
 [
   {
     "id": "wefunder",
-    "name": "Big project",
+    "title": "Big project",
+    "username": "wefunder",
     "description": "1. $310M million annual run rate in funding volume (GMV)\n2. $20M revenue run rate\n3. 4.2X+ year-over-year GMV growth\n4. October '21 results: $1.8M revenue, $620k net profit\n5. Market leader. 40%+ market share in Regulation Crowdfunding in Q3\n6. Over $5 billion of follow-on financing into startups first funded on Wefunder\n7. Created industry by helping Congress pass JOBS Act in 2012\n8. Spent 8 years lobbying for reg reforms that went live on on 3/15/2021",
     "images": [
       {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput";
 import { FileUploader } from "react-drag-drop-files";
+import axios from "axios";
 
 function Form() {
   const [name, setName] = useState("");
@@ -13,8 +14,8 @@ function Form() {
 
   const fileTypes = ["PDF", "PPTX", "PPT"];
 
-  const saveProject = async (formData) => {
-    console.log(name, projectName, projectDescription);
+  const saveProject = async (event) => {
+    event.preventDefault(); // don't redirect the page
 
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -26,9 +27,20 @@ function Form() {
       },
     };
 
-    const response = await axios.post("/api/uploads", formData, config);
+    const formData = new FormData();
+    formData.append("username", name);
+    formData.append("title", projectName);
+    formData.append("description", projectDescription);
+    formData.append(
+      "file",
+      file,
+      `${new Date().getTime()}_${file.name}`
+        .replace(/[^a-z0-9]/gi, "_")
+        .toLowerCase()
+    );
 
-    console.log("response", response.data);
+    const response = await axios.post("/api/upload", formData, config);
+    console.log(response);
   };
 
   return (
@@ -37,7 +49,7 @@ function Form() {
         File upload
       </h2>
 
-      <form>
+      <form onSubmit={saveProject}>
         <div className='flex'>
           <div className='flex flex-col items-start mr-4'>
             <FormInput
@@ -69,11 +81,9 @@ function Form() {
               name='file'
               types={fileTypes}
               classes='flex w-full h-full justify-center'
-              maxSize={1}
-              minSize={1}
               children={
                 file ? (
-                  file.name
+                  <p className='self-center'>{file.name} </p>
                 ) : (
                   <p className='self-center'>
                     Drag your file here.
@@ -89,6 +99,8 @@ function Form() {
           <button
             className='px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'
             onClick={saveProject}
+            type='submit'
+            disabled={!name || !projectName || !projectDescription || !file}
           >
             Save
           </button>

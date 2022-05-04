@@ -65,8 +65,10 @@ function projects({ projects }) {
           <div className='grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6'>
             {projects.map((project) => (
               <ProjectTile
-                title={project.name}
-                image={project.images[0].src}
+                key={project.id}
+                title={project.title}
+                name={project.username}
+                image={project?.images?.[0]?.src}
                 username='Someone'
                 id={project.id}
               />

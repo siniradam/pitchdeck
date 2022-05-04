@@ -14,14 +14,16 @@ const apiRoute = nextConnect({
   onError(error, req, res) {
     res.status(501).json({ error: `Upload failed! ${error.message}` });
   },
-  // onNoMatch(req, res) {
-  //   res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
-  // },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
+  },
 });
 
-apiRoute.use(upload.array("theFiles"));
+apiRoute.use(upload.single("file"));
 
 apiRoute.post((req, res) => {
+  const form = req.body;
+  projectFS.create(form);
   res.status(200).json({ data: "success" });
 });
 

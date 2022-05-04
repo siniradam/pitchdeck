@@ -22,16 +22,18 @@ function project({ project }) {
         ) : (
           <div className='flex justify-center w-screen h-screen px-4 text-gray-700'>
             <div className='flex flex-col flex-grow '>
-              <div className='flex justify-between flex-shrink-0 px-8 py-4 '>
-                <h1 className='text-xl font-semibold'>{project.name}</h1>
+              <div className='flex justify-between flex-shrink-0 px-8 py-4 h-16'>
+                <h1 className='text-xl font-semibold'>{project.title}</h1>
               </div>
               <div className='flex-grow h-0 overflow-auto'>
-                <div
-                  className='flex w-full p-8 h-96 max-h-96 border-gray-300 relative'
-                  objectFit='contain'
-                >
-                  {project.images.map((image) => (
-                    <Image src={image} layout='fill' objectFit='contain' />
+                <div className='flex w-full p-8 h-96 max-h-96 border-gray-300 relative'>
+                  {project?.images?.map((image) => (
+                    <Image
+                      src={image.src}
+                      key={image.id}
+                      layout='fill'
+                      objectFit='cover'
+                    />
                   ))}
                 </div>
                 <div className='w-full p-8  border-gray-300'>
@@ -42,7 +44,8 @@ function project({ project }) {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col flex-shrink-0 w-1/4 p-4'>
+
+            <div className='flex flex-col flex-shrink-0 w-1/4 p-4 mt-16 pt-0'>
               <div className='border border-gray-300'>
                 <div className='bg-emerald-400 h-24 p-6'>
                   <h2 className='text-4xl font-semibold text-white'>

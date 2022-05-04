@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function ProjectTile({ title, username, description, image, id }) {
+function ProjectTile({ title, name, description, image, id }) {
   return (
     <div>
       <Link href={`project/${id}`}>
@@ -26,7 +26,7 @@ function ProjectTile({ title, username, description, image, id }) {
           <a className='flex items-center' href='#'>
             <span className='text-xs font-medium text-gray-600'>by</span>
             <span className='text-xs font-medium ml-1 text-indigo-500'>
-              {username}
+              {name}
             </span>
           </a>
         </div>
