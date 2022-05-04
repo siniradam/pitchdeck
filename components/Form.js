@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import FormInput from "./FormInput";
 import { FileUploader } from "react-drag-drop-files";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function Form() {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setprojectDescription] = useState("");
@@ -27,20 +30,25 @@ function Form() {
       },
     };
 
+    const fileName = `${new Date().getTime()}_${file.name}`
+      .replace(/[^a-z0-9]/gi, "_")
+      .toLowerCase();
     const formData = new FormData();
     formData.append("username", name);
     formData.append("title", projectName);
     formData.append("description", projectDescription);
-    formData.append(
-      "file",
-      file,
-      `${new Date().getTime()}_${file.name}`
-        .replace(/[^a-z0-9]/gi, "_")
-        .toLowerCase()
-    );
+    formData.append("file", file, fileName);
 
     const response = await axios.post("/api/upload", formData, config);
-    console.log(response);
+
+    console.log({ response });
+    if (response.status == 200) {
+      if (response.data.project) {
+        router.push("/project/" + response.data.project.id);
+      }
+    } else {
+      alert(response.message);
+    }
   };
 
   return (

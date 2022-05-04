@@ -8,12 +8,12 @@
       {
         "id": "image1",
         "name": "Image 1",
-        "src": "https://picsum.photos/1000/700?0"
+        "path": "https://picsum.photos/1000/700?0"
       },
       {
         "id": "image2",
         "name": "Image 2",
-        "src": "https://picsum.photos/1000/700?1"
+        "path": "https://picsum.photos/1000/700?1"
       }
     ]
   }

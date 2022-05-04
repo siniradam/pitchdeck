@@ -68,7 +68,7 @@ function projects({ projects }) {
                 key={project.id}
                 title={project.title}
                 name={project.username}
-                image={project?.images?.[0]?.src}
+                image={project?.images?.[0]?.path}
                 username='Someone'
                 id={project.id}
               />

@@ -17,6 +17,7 @@ function project({ project }) {
 
       <div className='flex flex-col w-screen h-screen overflow-auto text-gray-700 bg-gradient-to-tr from-blue-100 via-indigo-100 to-gray-200'>
         <Header />
+
         {project === null ? (
           <h2>This project does not exists</h2>
         ) : (
@@ -26,15 +27,22 @@ function project({ project }) {
                 <h1 className='text-xl font-semibold'>{project.title}</h1>
               </div>
               <div className='flex-grow h-0 overflow-auto'>
-                <div className='flex w-full p-8 h-96 max-h-96 border-gray-300 relative'>
-                  {project?.images?.map((image) => (
-                    <Image
-                      src={image.src}
-                      key={image.id}
-                      layout='fill'
-                      objectFit='cover'
-                    />
-                  ))}
+                <div className='flex w-full p-8 h-96 max-h-96 border-gray-300 relative justify-center'>
+                  {project.inProgress ? (
+                    <h2 className='text-center self-center'>
+                      We are still working on this, images will be available
+                      soon.
+                    </h2>
+                  ) : (
+                    project?.images?.map((image) => (
+                      <Image
+                        src={image.path}
+                        key={image.id}
+                        layout='fill'
+                        objectFit='cover'
+                      />
+                    ))
+                  )}
                 </div>
                 <div className='w-full p-8  border-gray-300'>
                   <h2 className='text-xl font-semibold'>Description</h2>

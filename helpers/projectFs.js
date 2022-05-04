@@ -7,15 +7,16 @@ const edit = (id, params) => {
   const project = find(id);
   project.dateUpdated = new Date().toISOString();
   Object.assign(project, params);
-  saveData();
+  saveFile();
 };
 
-const create = (file) => {
-  file.id = new Date().getTime();
-  file.dateCreated = new Date().toISOString();
-  file.dateUpdated = new Date().toISOString();
-  projects.push(file);
+const create = (project) => {
+  project.id = new Date().getTime();
+  project.dateCreated = new Date().toISOString();
+  project.dateUpdated = new Date().toISOString();
+  projects.push(project);
   saveFile();
+  return project;
 };
 
 const saveFile = () => {
