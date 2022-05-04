@@ -19,7 +19,9 @@ function project({ project }) {
         <Header />
 
         {project === null ? (
-          <h2>This project does not exists</h2>
+          <div className='flex w-full h-full justify-center'>
+            <h2 className=' self-center'>This project does not exists.</h2>
+          </div>
         ) : (
           <div className='flex xl:flex-row md:flex-col justify-center w-screen h-screen px-4 text-gray-700'>
             <div className='flex flex-col flex-grow'>

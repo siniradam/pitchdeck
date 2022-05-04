@@ -19,6 +19,7 @@ function about() {
             WeFunder is a platform for people to find and fund projects that
             they are interested in.
           </p>
+          <p className='text-md'>Project by Koray Kircaoglu</p>
         </div>
       </div>
     </div>
