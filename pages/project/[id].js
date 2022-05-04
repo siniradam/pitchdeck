@@ -66,7 +66,6 @@ export default project;
 
 export async function getServerSideProps({ params, req }) {
   const project = projectFS.getById(params.id);
-  console.log(project);
 
   return {
     props: {

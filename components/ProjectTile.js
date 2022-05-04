@@ -1,9 +1,23 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-function ProjectTile({ title, username, description, image, link }) {
+function ProjectTile({ title, username, description, image, id }) {
   return (
     <div>
-      <a href='#' className='block h-64 rounded-lg shadow-lg bg-white'></a>
+      <Link href={`project/${id}`}>
+        <a className='block h-64 rounded-lg shadow-lg bg-white relative overflow-hidden'>
+          {image && (
+            <Image
+              src={image}
+              width={300}
+              height={300}
+              layout='fill'
+              objectFit='cover'
+            />
+          )}
+        </a>
+      </Link>
       <div className='flex items-center justify-between mt-3'>
         <div>
           <a href='#' className='font-medium'>
@@ -17,7 +31,9 @@ function ProjectTile({ title, username, description, image, link }) {
           </a>
         </div>
         <span className='flex items-center h-8 bg-indigo-200 text-indigo-600 text-sm px-2 rounded'>
-          View
+          <Link href={`project/${id}`}>
+            <a>View</a>
+          </Link>
         </span>
       </div>
     </div>

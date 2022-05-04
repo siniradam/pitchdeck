@@ -4,7 +4,9 @@ import Header from "../components/Header";
 import ProjectTile from "../components/ProjectTile";
 import ProjectPagination from "../components/ProjectPagination";
 
-function projects() {
+import { projectFS } from "../helpers/projectFs";
+
+function projects({ projects }) {
   return (
     <div>
       <Head>
@@ -18,7 +20,9 @@ function projects() {
         <div className='flex flex-col  min-h-screen m-6'>
           <h1 className='text-3xl'>Projects</h1>
           <div className='flex flex-col sm:flex-row sm:items-end sm:justify-between mt-6'>
-            <span className='text-sm font-semibold'>n Projects</span>
+            <span className='text-sm font-semibold'>
+              {projects.length} Project{projects.length > 1 && "s"}
+            </span>
             <button className='relative text-sm focus:outline-none group mt-4 sm:mt-0'>
               <div className='flex items-center justify-between w-40 h-10 px-3 border-2 border-gray-300 rounded hover:bg-gray-300'>
                 <span className='font-medium'>Popular</span>
@@ -59,7 +63,14 @@ function projects() {
           </div>
 
           <div className='grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6'>
-            <ProjectTile title={"Project 1"} username='Someone' />
+            {projects.map((project) => (
+              <ProjectTile
+                title={project.name}
+                image={project.images[0].src}
+                username='Someone'
+                id={project.id}
+              />
+            ))}
           </div>
 
           <ProjectPagination />
@@ -67,6 +78,16 @@ function projects() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps({ params, req }) {
+  const projects = projectFS.getAll();
+
+  return {
+    props: {
+      projects: projects || null,
+    }, // will be passed to the page component as props
+  };
 }
 
 export default projects;
