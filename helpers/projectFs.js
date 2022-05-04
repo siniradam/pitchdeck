@@ -1,10 +1,18 @@
 const fs = require("fs");
 let projects = require("../data/projects.json");
 
-const find = (id) => projects.find((x) => x.id.toString() === id.toString());
+const get = (id) => projects.find((x) => x.id.toString() === id.toString());
+
+const find = (query) =>
+  projects.filter(
+    (x) =>
+      x.title.toLowerCase().includes(query.toLowerCase()) ||
+      x.username.toLowerCase().includes(query.toLowerCase()) ||
+      x.description.toLowerCase().includes(query.toLowerCase())
+  );
 
 const edit = (id, params) => {
-  const project = find(id);
+  const project = get(id);
   project.dateUpdated = new Date().toISOString();
   Object.assign(project, params);
   saveFile();
@@ -25,8 +33,8 @@ const saveFile = () => {
 
 export const projectFS = {
   getAll: () => projects,
-  getById: (id) => find(id),
-  find: (x) => projects.find(x),
+  getById: (id) => get(id),
+  find: (x) => find(x),
   create,
   edit,
 };

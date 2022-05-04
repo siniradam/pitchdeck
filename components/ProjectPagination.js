@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProjectPagination() {
+function ProjectPagination({ totalPages, currentPage, setCurrentPage }) {
   return (
     <div className='flex justify-center mt-10 space-x-1'>
       <button className='flex items-center justify-center h-8 w-8 rounded text-gray-400'>

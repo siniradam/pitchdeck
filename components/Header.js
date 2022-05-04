@@ -37,11 +37,14 @@ function Header() {
         </Link>
       </div>
       <div className='flex-grow'></div>
-      <input
-        className='flex h-10 px-4 ml-10 text-sm bg-gray-200 rounded-full focus:outline-none focus:ring'
-        type='search'
-        placeholder='Search projects'
-      />
+      <form action='/projects'>
+        <input
+          name='q'
+          className='flex h-10 px-4 ml-10 text-sm bg-gray-200 rounded-full focus:outline-none focus:ring'
+          type='search'
+          placeholder='Search projects'
+        />
+      </form>
       {/* <buton className='flex items-center justify-center w-8 h-8 ml-auto overflow-hidden rounded-full cursor-pointer'>
       <img
         src='https://assets.codepen.io/5041378/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=1600304177&width=512'

@@ -21,8 +21,8 @@ function project({ project }) {
         {project === null ? (
           <h2>This project does not exists</h2>
         ) : (
-          <div className='flex justify-center w-screen h-screen px-4 text-gray-700'>
-            <div className='flex flex-col flex-grow '>
+          <div className='flex xl:flex-row md:flex-col justify-center w-screen h-screen px-4 text-gray-700'>
+            <div className='flex flex-col flex-grow'>
               <div className='flex justify-between flex-shrink-0 px-8 py-4 h-16'>
                 <h1 className='text-xl font-semibold'>{project.title}</h1>
               </div>
