@@ -51,6 +51,17 @@ function Form() {
     }
   };
 
+  const FileUploaderContent = () => {
+    return file ? (
+      <p className='self-center'>{file.name} </p>
+    ) : (
+      <p className='self-center'>
+        Drag your file here.
+        <br /> ({fileTypes.join(", ")})
+      </p>
+    );
+  };
+
   return (
     <section className='max-w-4xl p-6 mx-auto bg-white rounded-b-md shadow-md '>
       <h2 className='text-lg font-semibold text-gray-700 capitalize '>
@@ -89,17 +100,10 @@ function Form() {
               name='file'
               types={fileTypes}
               classes='flex w-full h-full justify-center'
-              children={
-                file ? (
-                  <p className='self-center'>{file.name} </p>
-                ) : (
-                  <p className='self-center'>
-                    Drag your file here.
-                    <br /> ({fileTypes.join(", ")})
-                  </p>
-                )
-              }
-            />
+              // children={}
+            >
+              {FileUploaderContent()}
+            </FileUploader>
           </div>
         </div>
 

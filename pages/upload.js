@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Form from "../components/Form";
 
-function upload() {
+function Upload() {
   return (
     <div>
       <Head>
@@ -20,4 +20,4 @@ function upload() {
   );
 }
 
-export default upload;
+export default Upload;

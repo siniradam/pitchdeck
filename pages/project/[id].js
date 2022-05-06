@@ -39,6 +39,7 @@ function project({ project }) {
                     <Image
                       key={`${project?.images[0].id}`}
                       src={project?.images[0].path}
+                      alt='Project Preview'
                       layout='fill'
                       objectFit='cover'
                     />
@@ -57,6 +58,7 @@ function project({ project }) {
                   ) : (
                     project?.images?.map((image) => (
                       <Image
+                        alt='Project Slide'
                         key={`p${image.id}`}
                         src={image.path}
                         width={600}

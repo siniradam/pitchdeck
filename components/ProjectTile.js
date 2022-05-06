@@ -7,7 +7,14 @@ function ProjectTile({ title, name, description, image, id }) {
     <div>
       <Link href={`project/${id}`}>
         <a className='block h-64 rounded-lg shadow-lg bg-white relative overflow-hidden'>
-          {image && <Image src={image} layout='fill' objectFit='cover' />}
+          {image && (
+            <Image
+              src={image}
+              alt='Project Preview'
+              layout='fill'
+              objectFit='cover'
+            />
+          )}
         </a>
       </Link>
       <div className='flex items-center justify-between mt-3'>

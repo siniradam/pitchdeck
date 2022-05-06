@@ -1,17 +1,13 @@
 import React from "react";
 import Head from "next/head";
+
 import Header from "../components/Header";
 import ProjectTile from "../components/ProjectTile";
 import ProjectPagination from "../components/ProjectPagination";
 
 import { projectFS } from "../helpers/projectFs";
-import { useRouter } from "next/router";
 
-function projects({ projects }) {
-  const router = useRouter();
-
-  const { q } = router.query;
-
+function Projects({ projects }) {
   return (
     <div>
       <Head>
@@ -90,8 +86,6 @@ function projects({ projects }) {
 export async function getServerSideProps({ params, req, query }) {
   const projects = query.q ? projectFS.find(query.q) : projectFS.getAll();
 
-  console.log(projects);
-
   return {
     props: {
       projects: projects || [],
@@ -99,4 +93,4 @@ export async function getServerSideProps({ params, req, query }) {
   };
 }
 
-export default projects;
+export default Projects;
