@@ -57,13 +57,17 @@ function project({ project }) {
                     </h2>
                   ) : (
                     project?.images?.map((image) => (
-                      <Image
-                        alt='Project Slide'
-                        key={`p${image.id}`}
-                        src={image.path}
-                        width={600}
-                        height={900}
-                      />
+                      <div
+                        key={`h${image.name}`}
+                        className='h-96 w-full relative mb-6'
+                      >
+                        <Image
+                          key={`p${image.name}`}
+                          src={image.path}
+                          layout='fill'
+                          objectFit='contain'
+                        />
+                      </div>
                     ))
                   )}
                 </div>

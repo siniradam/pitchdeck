@@ -9,8 +9,8 @@ const extractImages = (file, id) => {
     saveFilename: id,
     savePath: `./public/images/project/${id}`,
     format: "png",
-    width: 600,
-    height: 900,
+    // width: 600,
+    // height: 900,
   };
 
   const filePath = `./public/project/${file}`;
