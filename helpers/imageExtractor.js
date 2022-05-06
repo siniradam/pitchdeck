@@ -17,7 +17,7 @@ const extractImages = (file, id) => {
   const dataBuffer = fs.readFileSync(filePath);
 
   if (dataBuffer) {
-    fs.mkdirSync(`./public/images/project/${id}`);
+    fs.mkdirSync(`./public/images/project/${id}`, { recursive: true });
 
     const storeAsImage = fromPath(filePath, options);
 
