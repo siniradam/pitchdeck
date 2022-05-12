@@ -6,10 +6,13 @@
 npm install
 ```
 
+Create a folder called `project` public/images/
+
+
 ## Required packages
 ```bash
 # mac
-brew install graphicsmagick
+brew install gs graphicsmagick
 
 # linux
 sudo apt-get install graphicsmagick
